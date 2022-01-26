@@ -1,0 +1,24 @@
+.container{
+    /* display: flex; */
+}
+.header{
+    /* position: fixed; */
+    height: 120px;
+    width: 100%;
+    /* margin: auto; */
+    overflow: hidden;
+}
+
+.form{
+    margin-bottom: 15%;
+}
+
+
+.statistique{
+    width: 230px;
+    text-align: center;
+    height: auto;
+    border: 1px solid black;
+    padding-bottom: 1%;
+
+}

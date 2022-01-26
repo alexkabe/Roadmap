@@ -1,0 +1,83 @@
+<ngx-spinner>
+</ngx-spinner>
+<div class="picsum-img-wrapper">
+    <!-- <img [src]="images[2]" alt="Random third slide"> -->
+    <div class="scroll">
+        
+        <div class="bod" #scrollMe >
+            <div *ngFor="let item of tables; let i = index">
+
+                <div class="picsum-img-wrapper">
+                    <ng-template #popContent class="pop">
+                    <input type="text" class="form-control" size="10%" [(ngModel)]=item.titre/>
+                    <button type="button" class="btn btn-outline-danger bout" (click)="cancelUpdate(p, i)">
+                        Annuler
+                    </button>
+                    <button type="button" class="btn btn-outline-success bout2" (click)="updatePoint(item.titre, i,p)" >Valider</button>
+                    </ng-template>
+                    <ng-template #popTitle> Ajouter un nouveau point </ng-template>
+                </div>
+
+
+                <div class="point"   
+                    [ngbPopover]="popContent"
+                    [autoClose]="false"
+                    triggers="manual"
+                    #p="ngbPopover"
+                    placement="right"
+                    (click)="openUpdate(item.titre, p)"
+                    [popoverTitle]="popTitle"
+                >
+                    <div class="titre">{{ item.titre }}</div>
+                    <div class="heure">{{ item.heure }}</div>
+                    <div class="date">{{ item.date }}</div>
+                </div>
+                <hr class="verticalAlign"  width="1" >
+            </div>
+
+            <div *ngIf="isClicked">
+                <div class="point1" *ngIf="tables.length === 0">
+                    <div class="titre">{{ inputValue }}</div>
+                    <div class="heure">--:--:--</div>
+                    <div class="date">-- - -- - ----</div>
+                </div>
+                <hr class="verticalAlign"  width="1" >
+            </div>
+            
+        </div>
+
+        <div class="picsum-img-wrapper">
+            <div class="form">
+              <ng-template #popContent class="pop">
+                  <input type="text" class="form-control" size="10%" [(ngModel)]="inputValue"/>
+                  <button type="button" class="btn btn-outline-danger bout" (click)="removePoint(p)">
+                    Annuler
+                  </button>
+                  <button type="button" class="btn btn-outline-success bout2" (click)="validPoint(p)" >Valider</button>
+                </ng-template>
+                <ng-template #popTitle> Ajouter un nouveau point </ng-template>
+                
+                
+                <div style="text-align:center">
+                      <button
+                      type="button"
+                      class="btn btn-outline-success"
+                      [ngbPopover]="popContent"
+                      [autoClose]="false"
+                      triggers="manual"
+                      #p="ngbPopover"
+                      placement="right"
+                      (click)="p.open()"
+                      (click)="addPoint()"
+                      [popoverTitle]="popTitle"
+                      >
+                      +
+                      </button>
+                  </div>  
+            </div>
+        </div>
+
+    </div>
+</div>
+
+        

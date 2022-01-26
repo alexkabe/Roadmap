@@ -1,0 +1,68 @@
+<nav class="navbar navbar-black bg-primary header">
+  <div class="container-fluid">
+      <a class="navbar-brand"></a>
+      <form class="d-flex">
+      <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+      <button class="btn btn-success" type="submit">{{titre}}</button>
+      </form>
+  </div>
+</nav>
+<div class="container">
+  <div class="container-fluid">
+    <ngb-carousel *ngIf="tables" [interval]="10000" [showNavigationIndicators]="false" >
+      <ng-template ngbSlide>
+        <app-card-user></app-card-user>
+      </ng-template>
+      
+      
+      <ng-template ngbSlide>
+          <app-card></app-card>
+      </ng-template>
+      
+      
+      <ng-template ngbSlide>
+        <app-card></app-card>
+      </ng-template>
+  
+  
+    </ngb-carousel>  
+  </div>      
+  
+  
+  <!-- <button class="y-right" (click)="plusDivs(+1)">&#10095;</button>
+  <button class="button" *ngIf="slideIndex === 1"> + </button> -->
+  <!-- <p>
+      <button type="button" class="btn btn-outline-primary" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+        aria-controls="collapseExample">
+        Toggle
+      </button>
+  </p>
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div class="card">
+        <div class="card-body col-2">
+          <div class="statistique">
+              <h2>STATISTIQUES</h2>
+  
+              <div>
+                  <label>User1: </label>
+                  <label>{{ tables.length }}</label>    
+              </div>
+  
+              <div>
+                  <label>User1: </label>
+                  <label>{{ tables.length }}</label>    
+              </div>
+  
+              <div>
+                  <label>User1: </label>
+                  <label>{{ tables.length }}</label>    
+              </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  
+  
+  
+  
+</div>

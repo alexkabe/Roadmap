@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="container-fluid">
+    <div class="block">
+      <h1 class="titre">
+        Page de connexion
+      </h1>
+
+<!-- 
+      <div class="picsum-img-wrapper">
+        <div class="form">
+          <ng-template #popContent class="pop">
+            
+            <form class="row g-3">
+              <div class="col-auto">
+                <input type="text"  class="form-control" id="staticEmail2" placeholder="email@example.com">
+              </div>
+              <div class="col-auto">
+                <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+              </div>
+              
+              
+              <button type="button" class="btn btn-outline-danger bout" (click)="p.close()">
+                Annuler
+              </button>
+              <button type="submit" class="btn btn-outline-success bout2" (click)="connexion(p)" >Connexion</button>
+            </form>
+            </ng-template>
+            <ng-template #popTitle> formulaire de connexion </ng-template>
+            
+            
+            <div style="text-align:center">
+                  <button
+                  type="button"
+                  class="btn btn-success"
+                  [ngbPopover]="popContent"
+                  [autoClose]="false"
+                  triggers="manual"
+                  #p="ngbPopover"
+                  placement="bottom"
+                  (click)="p.open()"
+                  [popoverTitle]="popTitle"
+                  >
+                  Se connecter
+                  </button>
+              </div>  
+        </div>
+    </div> -->
+
+
+    <div style="text-align:center">
+        <button type="button" class="btn btn-outline-primary bout" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+          aria-controls="collapseExample"
+          placement="center"
+          >
+          Se connecter
+        </button>
+    </div>
+
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <div class="card">
+          <div class="card-body">
+            <form class="row g-3" [formGroup]="loginForm" (ngSubmit)="connexion()">
+              <div class="col-auto">
+                <input type="text"  class="form-control" id="login" formControlName="email" placeholder="email@example.com">
+              </div>
+              <div class="col-auto">
+                <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+              </div>
+              
+              
+              <!-- <button type="button" class="btn btn-outline-danger bout" (click)="p.close()">
+                Annuler
+              </button> -->
+              <button type="submit" class="btn btn-outline-success bout2" (click)="connexion()" >Connexion</button>
+              
+            </form>
+
+            <!-- <form class="row g-3 needs-validation" novalidate>
+              
+              <div class="col-md-4">
+                <label for="validationCustomUsername" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text" id="inputGroupPrepend">@</span>
+                  <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                  <div class="invalid-feedback">
+                    Please choose a username.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">Password</label>
+                <input type="password" class="form-control" id="validationCustom03" required>
+                <div class="invalid-feedback">
+                  Please provide your password
+                </div>
+              </div>
+              
+              <div class="col-12" >
+                <button class="btn btn-primary connexion"  type="submit">Connexion</button>
+              </div>
+            
+            </form> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

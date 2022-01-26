@@ -1,0 +1,18 @@
+<div class="popover">
+    <ng-template #popContent>
+        Hello, <b>{{name}}</b>!
+        <input type="text" [(ngModel)]="inputValue">
+    </ng-template>
+    <ng-template #popTitle>
+        Fancy <b>content!!</b>
+    </ng-template>
+    <div style="text-align:center">
+        <BR>
+        <BR>
+        <button type="button" class="btn btn-outline-secondary" [ngbPopover]="popContent" [autoClose]="'outside'" [popoverTitle]="popTitle" >
+            I've got an input field!
+        </button>
+        <br/>
+        <b>This is my input field value!: {{ inputValue }}</b>
+    </div>  
+</div>

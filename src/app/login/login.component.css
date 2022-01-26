@@ -1,0 +1,26 @@
+.block{
+    /* display: flex; */
+    margin: 18% auto;
+    height: 400px;
+    width: 60%;
+    padding: 4%;
+    background-color: rgb(169, 224, 208) ;
+    border-radius: 15px;
+}
+
+.titre{
+    text-align: center;
+    font-size: 1.5em;
+    text-decoration: underline;
+    color: #298754;
+}
+
+.bout{
+    margin: 4%;
+}
+.bout2{
+    margin: 3%;
+    /* align-items: center; */
+    /* display: block; */
+    text-align: center;
+}
