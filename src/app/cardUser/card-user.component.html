@@ -1,39 +1,102 @@
-<ngx-spinner>
-</ngx-spinner>
+
 <div class="picsum-img-wrapper">
     <!-- <img [src]="images[2]" alt="Random third slide"> -->
     <div class="scroll">
         
+        <!-- <ngx-spinner
+            bdColor="rgba(51,51,51,0.8)"
+            size="medium"
+            color="#fff"
+            type="ball-scale-multiple"
+            >
+            <p style="font-size: 20px; color: white">Loading...</p>
+        </ngx-spinner> -->
+
+        <ngx-spinner
+            bdColor="rgba(0, 0, 0, 1)"
+            template="<img src='https://media.giphy.com/media/o8igknyuKs6aY/giphy.gif' />"
+            >
+            </ngx-spinner>
+
         <div class="bod" #scrollMe >
             <div *ngFor="let item of tables; let i = index">
 
-                <div class="picsum-img-wrapper">
-                    <ng-template #popContent class="pop">
-                    <input type="text" class="form-control" size="10%" [(ngModel)]=item.titre/>
-                    <button type="button" class="btn btn-outline-danger bout" (click)="cancelUpdate(p, i)">
-                        Annuler
-                    </button>
-                    <button type="button" class="btn btn-outline-success bout2" (click)="updatePoint(item.titre, i,p)" >Valider</button>
-                    </ng-template>
-                    <ng-template #popTitle> Ajouter un nouveau point </ng-template>
+                <div class="rouge" *ngIf="item.status === true">
+
+                    <div class="picsum-img-wrapper">
+                        <ng-template #popContent class="pop">
+                        <input type="text" class="form-control" size="10%" [(ngModel)]=item.data/>
+                        <button type="button" class="btn btn-outline-danger bout" (click)="cancelUpdate(p, i)">
+                            Annuler
+                        </button>
+                        <button type="button" class="btn btn-outline-success bout2" (click)="updatePoint(item.data, i,p)" >Valider</button>
+                        </ng-template>
+                        <ng-template #popTitle> Modifier le  point en rouge </ng-template>
+                    </div>
+                    
+                    <div class="titreRouge">{{ item.data }}</div>
+                    <div class="pointRouge"   
+                        [ngbPopover]="popContent"
+                        [autoClose]="false"
+                        triggers="manual"
+                        #p="ngbPopover"
+                        placement="right"
+                        (click)="openUpdate(item.data, p)"
+                        [popoverTitle]="popTitle"
+                    >
+                        <div class="heureRouge">{{ item.date_publication }}</div>
+                        <div class="dateRouge">{{ item.date_publication }}</div>
+                    </div>
+                    <hr class="verticalAlign"  width="1" >
+                </div>
+
+                <div *ngIf="item.status === false">
+
+                    <div class="picsum-img-wrapper">
+                        <ng-template #popContent class="pop">
+                        <input type="text" class="form-control" size="10%" [(ngModel)]=item.data/>
+                        <button type="button" class="btn btn-outline-danger bout" (click)="cancelUpdate(pr, i)">
+                            Annuler
+                        </button>
+                        <button type="button" class="btn btn-outline-success bout2" (click)="updatePoint(item.data, i,pr)" >Valider</button>
+                        </ng-template>
+                        <ng-template #popTitle> Modifier le  point en vert v</ng-template>
+                    </div>
+
+                    <div class="point"   
+                        [ngbPopover]="popContent"
+                        [autoClose]="false"
+                        triggers="manual"
+                        #pr="ngbPopover"
+                        placement="right"
+                        (click)="openUpdate(item.data, pr)"
+                        [popoverTitle]="popTitle"
+                    >
+                        <div class="titre">{{ item.data }}</div>
+                        <div class="heure">{{ item.date_publication }}</div>
+                        <div class="date">{{ item.date_publication }}</div>
+                    </div>
+                    <hr class="verticalAlign"  width="1" >
                 </div>
 
 
-                <div class="point"   
-                    [ngbPopover]="popContent"
-                    [autoClose]="false"
-                    triggers="manual"
-                    #p="ngbPopover"
-                    placement="right"
-                    (click)="openUpdate(item.titre, p)"
-                    [popoverTitle]="popTitle"
-                >
-                    <div class="titre">{{ item.titre }}</div>
-                    <div class="heure">{{ item.heure }}</div>
-                    <div class="date">{{ item.date }}</div>
-                </div>
-                <hr class="verticalAlign"  width="1" >
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <div *ngIf="isClicked">
                 <div class="point1" *ngIf="tables.length === 0">

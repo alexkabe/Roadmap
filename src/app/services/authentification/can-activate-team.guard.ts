@@ -1,27 +1,20 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, CanActivate, Router } from '@angular/router';
-import { AuthService } from './authService';
+import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CanActivateTeamGuard implements CanActivate {
 
-  user: any;
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
-    ){
-    this.user = this.route.snapshot.paramMap.get('id');
-    console.log(this.user);
-  }
 
-
-  canActivate(): boolean {
-    if (this.authService.isLoggedIn()){
+  canActivate(next: ActivatedRouteSnapshot): boolean {
+    // let etat = JSON.parse(next.queryParams['id']);
+    let state = localStorage.getItem('byu5wec467ubwbtec7n6wc7er6');
+    if (state === "byu5wec4677er6"){
       return true;
-    }else {
-      // this.router.navigate(['team'])
-      return false;
     }
+    return false;
   }
   
 }

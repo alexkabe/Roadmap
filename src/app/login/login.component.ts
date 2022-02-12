@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from '../services/authentification/authService';
+import { DataBase } from '../services/database';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +18,13 @@ export class LoginComponent implements OnInit {
       lastName: new FormControl(''),
   });
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, 
+              private database: DataBase, private spinner: NgxSpinnerService) { 
 
   }
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      user_name: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
       });
   }
@@ -29,14 +32,25 @@ export class LoginComponent implements OnInit {
 
   }
 
-  connexion(){
-
-
-    localStorage.setItem('User', JSON.stringify(this.loginForm.value));
-    this.router.navigate(['/team']);
-    // isLoggedIn(this.loginForm.value);
-    // ceci est un test
-
+  connexion(f:any){
+    this.spinner.show();
+    // this.database.user =  this.loginForm.value;
+    this.database.isLoggedIn(this.loginForm.value).subscribe(val =>{
+      if(val){
+        let val2 = {
+          etat: val
+        }
+        localStorage.setItem('byu5wec467ubwbtec7n6wc7er6', "byu5wec4677er6")
+        this.router.navigate(['/team']);
+        f.reset();
+        this.spinner.hide();
+      }else{
+        console.log("tu n'es pas passe")
+        console.log(f.value)
+        this.spinner.hide();
+        // this.isCollapsed= true;
+      }
+    })
   }
 
 }

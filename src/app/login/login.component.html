@@ -4,6 +4,14 @@
       <h1 class="titre">
         Page de connexion
       </h1>
+        <ngx-spinner
+            bdColor="rgba(51,51,51,0.8)"
+            size="medium"
+            color="#fff"
+            type="ball-scale-multiple"
+            >
+            <p style="font-size: 20px; color: white">Loading...</p>
+        </ngx-spinner>
 
 <!-- 
       <div class="picsum-img-wrapper">
@@ -59,9 +67,9 @@
     <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
         <div class="card">
           <div class="card-body">
-            <form class="row g-3" [formGroup]="loginForm" (ngSubmit)="connexion()">
+            <form class="row g-3" [formGroup]="loginForm" (ngSubmit)="connexion(f)" #f="ngForm">
               <div class="col-auto">
-                <input type="text"  class="form-control" id="login" formControlName="email" placeholder="email@example.com">
+                <input type="text"  class="form-control" id="login" formControlName="user_name" placeholder="email@example.com">
               </div>
               <div class="col-auto">
                 <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
@@ -71,7 +79,7 @@
               <!-- <button type="button" class="btn btn-outline-danger bout" (click)="p.close()">
                 Annuler
               </button> -->
-              <button type="submit" class="btn btn-outline-success bout2" (click)="connexion()" >Connexion</button>
+              <button type="submit" class="btn btn-outline-success bout2">Connexion</button>
               
             </form>
 

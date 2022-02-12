@@ -1,5 +1,9 @@
-.container{
-    /* display: flex; */
+/* .container{
+     display: flex; 
+
+} */
+.body{
+    background-color: rgb(241, 166, 166);
 }
 .header{
     /* position: fixed; */

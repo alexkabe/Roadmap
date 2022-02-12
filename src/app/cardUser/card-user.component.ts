@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { DataBase } from '../services/database';
 
 @Component({
   selector: 'app-card-user',
@@ -8,81 +10,53 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CardUserComponent {
   
+    @ViewChild('scrollMe') scroll!: ElementRef;
     titre = "Alex kabe kabe"
+    
     itemUpdate = "";
     isClicked = false;
     popIsOpen = false;
     public isCollapsed = true;
     submitted = false;
     inputValue = "";
-    tables = [
+    tables: any =[
         {
-        titre: 'Je suis la CAF 1',
-        date: "12-02-2002",
-        heure: "00:00:00"
+            data: "first commit",
+            date_publication: "2022-02-02T07:35:04.560488Z",
+            id: 2,
+            status: false,
+            user: 2,
+            username: "santos"
         },
         {
-        titre: 'Je suis la CAF 2',
-        date: "12-02-2002",
-        heure: "00:00:00"
-        },
-        {
-        titre: 'Je suis la CAF 3',
-        date: "12-02-2002",
-        heure: "00:00:00"
-        },
-        {
-        titre: 'Je suis la CAF 4',
-        date: "12-02-2002",
-        heure: "00:00:00"
-        },
-        {
-        titre: 'Je suis la CAF 5',
-        date: "12-02-2002",
-        heure: "00:00:00"
-        },
-        {
-        titre: 'Je suis la CAF 4',
-        date: "12-02-2002",
-        heure: "00:00:00"
-        },
-        {
-        titre: 'Je suis la CAF 5',
-        date: "12-02-2002",
-        heure: "00:00:00"
-        },
-        {
-        titre: 'Je suis la CAF 4',
-        date: "12-02-2002",
-        heure: "00:00:00"
-        },
-        {
-        titre: 'Je suis la CAF 5',
-        date: "12-02-2002",
-        heure: "00:00:00"
-        },
-        {
-        titre: 'Je suis la CAF 4',
-        date: "12-02-2002",
-        heure: "00:00:00"
-        },
-        {
-        titre: 'Je suis la CAF 5',
-        date: "12-02-2002",
-        heure: "00:00:00"
+            data: "Second commit",
+            date_publication: "2022-02-02T07:35:04.560488Z",
+            id: 2,
+            status: true,
+            user: 2,
+            username: "santos"
         }
     ];
     // f: any;
     // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
-    constructor() { 
-
+    constructor(private database: DataBase,private spinner: NgxSpinnerService) { 
+        this.spinner.show();
+        this.database.getPublications().subscribe((data: any) =>{
+            this.tables = data;
+            console.log(data);
+            this.spinner.hide();
+          });
     }
       // convenience getter for easy access to form fields
 
   
     ngOnInit(): void {
 
+    }
+
+    scrollToBottom(){
+        // this.scroll.nativeElement.scrollTop = 0;
     }
     addPoint(){
         this.isClicked = true;
@@ -98,14 +72,16 @@ export class CardUserComponent {
         p.close();
         this.isClicked = false;
         let point = {
-            titre: this.inputValue,
-            date: "12-20-2021",
-            heure: "12:09:12"
+            "data":  this.inputValue,
+            "user": 2,
+            "status": false
         }
         
-        this.tables.push(point);
-        console.log(point);
-        this.inputValue = '';
+        // this.tables.push(point);
+        this.database.addPublication(point).subscribe(data =>{
+            console.log(data);
+        })
+        this.inputValue = "";
     }
 
     updatePoint(item: string, idItem: number, p: any){
@@ -123,7 +99,7 @@ export class CardUserComponent {
 
     cancelUpdate(p: any, index: number){
         p.close();
-        this.tables[index].titre = this.itemUpdate;
+        this.tables[index].data = this.itemUpdate;
         this.popIsOpen = !this.popIsOpen;
     }
 }

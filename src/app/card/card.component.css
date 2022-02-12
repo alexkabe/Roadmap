@@ -3,10 +3,11 @@
     margin-top: 15px;
     padding-top: 1%;
     /* width: 700px; */
-    height: 510px;
+    height: 590px;
     overflow: auto;
     margin-bottom: 5%;
     text-align: center;
+    overflow-y: hidden;
 }
 .scroll{
     /* height: 70%; */

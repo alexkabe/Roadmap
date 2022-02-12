@@ -1,6 +1,7 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { NgxSpinnerService } from "ngx-spinner";
+import { toArray } from "rxjs";
 
 
 @Injectable({
@@ -8,45 +9,39 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class DataBase{
 
-    URL = "https://restcountries.com/v3.1/all";
-    options= {
-        // headers?: HttpHeaders | {[header: string]: string | string[]},
-        observe: 'response',
-        // params?: HttpParams|{[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>},
-        reportProgress: Boolean,
-        responseType: 'json',
-        withCredentials: Boolean,
-      }
+    user: any;
+    // URL = "https://restcountries.com/v3.1/all";
+    URL = "https://roadmapsaf.herokuapp.com/saf/"
+    
+
     constructor(private http: HttpClient, private spinner: NgxSpinnerService){
 
     }
     //Cette partie est resevee a 
 
     getUsers(){
-        // this.spinner.show();
-        return this.http.get(this.URL, {
-            // headers?: HttpHeaders | {[header: string]: string | string[]},
-            observe: 'response',
-            // params?: HttpParams|{[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>},
-            reportProgress: true,
-            responseType: 'json',
-            withCredentials: true,
-          }).subscribe(data =>{
-              console.log(data);
-            //   this.spinner.hide();
-          });
+        return this.http.get(`${this.URL}listuser`);
+    }
+
+    getPublications(){
+      return this.http.get(`${this.URL}listpublication`);
     }
 
     loginUser(user: any){
       return this.http.post<any>(this.URL, user)
     }
 
-    loggedIn(){
-      
+    isLoggedIn(user: any){
+      return  this.http.post(`${this.URL}login`, user);
     }
 
-    addPoint(){
+    addPublication(point: any){
+      let point2 = {
+        "data":  point.data,
+        "user": 2
+    }
 
+      return this.http.post(`${this.URL}addPublication`, point2);
     }
 
     dropPont(){

@@ -5,30 +5,34 @@
       <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
       <button class="btn btn-success" type="submit">{{titre}}</button>
       </form>
+    </div>
+  </nav>
+  
+  <div class="body">
+    <div class="container">
+      <div class="container-fluid">
+        <ngb-carousel *ngIf="tables" [interval]="10000" [showNavigationIndicators]="false" >
+          <ng-template ngbSlide>
+            <app-card-user></app-card-user>
+          </ng-template>
+          
+          
+          <ng-template ngbSlide>
+              <app-card></app-card>
+          </ng-template>
+          
+          
+          <ng-template ngbSlide>
+            <app-card></app-card>
+          </ng-template>
+      
+      
+        </ngb-carousel>  
+      </div>      
+    
+    </div>
   </div>
-</nav>
-<div class="container">
-  <div class="container-fluid">
-    <ngb-carousel *ngIf="tables" [interval]="10000" [showNavigationIndicators]="false" >
-      <ng-template ngbSlide>
-        <app-card-user></app-card-user>
-      </ng-template>
-      
-      
-      <ng-template ngbSlide>
-          <app-card></app-card>
-      </ng-template>
-      
-      
-      <ng-template ngbSlide>
-        <app-card></app-card>
-      </ng-template>
-  
-  
-    </ngb-carousel>  
-  </div>      
-  
-  
+
   <!-- <button class="y-right" (click)="plusDivs(+1)">&#10095;</button>
   <button class="button" *ngIf="slideIndex === 1"> + </button> -->
   <!-- <p>
@@ -65,4 +69,3 @@
   
   
   
-</div>

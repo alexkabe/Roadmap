@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { DataBase } from '../services/database';
 
 @Component({
   selector: 'app-card',
@@ -8,51 +10,15 @@ import {Component} from '@angular/core';
 export class CardComponent {
   titre ="Alex kabe kabe"
   inputValue= "";
-    tables = [
-        {
-          titre: 'Je suis la CAF 1',
-          date: "12-02-2002",
-          heure: "00:00:00"
-        },
-        {
-          titre: 'Je suis la CAF 2',
-          date: "12-02-2002",
-          heure: "00:00:00"
-        },
-        {
-          titre: 'Je suis la CAF 3',
-          date: "12-02-2002",
-          heure: "00:00:00"
-        },
-        {
-          titre: 'Je suis la CAF 4',
-          date: "12-02-2002",
-          heure: "00:00:00"
-        },
-        {
-          titre: 'Je suis la CAF 5',
-          date: "12-02-2002",
-          heure: "00:00:00"
-        },
-        {
-          titre: 'Je suis la CAF 5',
-          date: "12-02-2002",
-          heure: "00:00:00"
-        },
-        {
-          titre: 'Je suis la CAF 5',
-          date: "12-02-2002",
-          heure: "00:00:00"
-        },
-        {
-          titre: 'Je suis la CAF 5',
-          date: "12-02-2002",
-          heure: "00:00:00"
-        },
-        {
-          titre: 'Je suis la CAF 5',
-          date: "12-02-2002",
-          heure: "00:00:00"
-        }
-      ];
+
+  tables: any = [];
+
+  constructor(private database: DataBase,private spinner: NgxSpinnerService) { 
+    this.spinner.show();
+    this.database.getPublications().subscribe((data: any) =>{
+        this.tables = data;
+        console.log(data);
+        this.spinner.hide();
+      });
+  }
 }

@@ -51,10 +51,12 @@ export class MapComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.database.getUsers();
+    this.database.getUsers().subscribe(data =>{
+      // console.log(data);
+    });
   }
 }
-function ScrollToBottomDirective(ScrollToBottomDirective: any) {
-  throw new Error('Function not implemented.');
-}
+// function ScrollToBottomDirective(ScrollToBottomDirective: any) {
+//   throw new Error('Function not implemented.');
+// }
 

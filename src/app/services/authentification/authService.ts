@@ -1,22 +1,24 @@
 import { Injectable } from "@angular/core";
+import { NgxSpinnerService } from "ngx-spinner";
+import { DataBase } from "../database";
 
 @Injectable({
     providedIn: 'root'
 })
 export  class AuthService{
 
-    constructor(){
+    constructor(private spinner: NgxSpinnerService, private database: DataBase){
         
     }
 
-    isLoggedIn(){
-        let user: any;
-        user = localStorage.getItem('User');
-        console.log(user);
-        if(user){
-            return true;
-        }else{
-            return false
-        }
-    }
+    async isLoggedIn(user:any){
+
+        // await this.database.isLoggedIn(user).then(val =>{
+        //     console.log(val)
+        // })
+   }
 } 
+
+function data(data: any, arg1: (any: any) => true | undefined, arg2: (err: any) => boolean) {
+    throw new Error("Function not implemented.");
+}

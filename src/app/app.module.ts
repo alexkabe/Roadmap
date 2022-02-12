@@ -16,6 +16,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/authentification/authService';
 import { CanActivateTeamGuard } from './services/authentification/can-activate-team.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -34,6 +35,9 @@ import { CanActivateTeamGuard } from './services/authentification/can-activate-t
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+
     NgxSpinnerModule,
   ],
   providers: [
