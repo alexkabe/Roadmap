@@ -19,32 +19,22 @@ export class CardUserComponent {
     public isCollapsed = true;
     submitted = false;
     inputValue = "";
-    tables: any =[
-        {
-            data: "first commit",
-            date_publication: "2022-02-02T07:35:04.560488Z",
-            id: 2,
-            status: false,
-            user: 2,
-            username: "santos"
-        },
-        {
-            data: "Second commit",
-            date_publication: "2022-02-02T07:35:04.560488Z",
-            id: 2,
-            status: true,
-            user: 2,
-            username: "santos"
-        }
-    ];
+    userConnected: any ={};
+    tables: any =[];
     // f: any;
     // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
-    constructor(private database: DataBase,private spinner: NgxSpinnerService) { 
+    constructor(private database: DataBase,private spinner: NgxSpinnerService) {
+        this.userConnected = (localStorage.getItem("userConnected"));
+        this.userConnected =  JSON.parse(this.userConnected)
+        this.chargeData();
+    }
+    
+    chargeData(){
+        
         this.spinner.show();
-        this.database.getPublications().subscribe((data: any) =>{
+        this.database.getDataOneUser(this.userConnected.id).subscribe((data: any) =>{
             this.tables = data;
-            // console.log(data);
             this.spinner.hide();
           });
     }
@@ -85,9 +75,18 @@ export class CardUserComponent {
     }
 
     updatePoint(item: string, idItem: number, p: any){
-        console.log(item + idItem);
-        p.close();
-        this.popIsOpen = !this.popIsOpen;
+        let publication ={
+            id: idItem,
+            data: item,
+            user: this.userConnected.id
+        }
+        this.database.updatePublication(publication).subscribe(valeur=>{
+            console.log(valeur);
+            console.log(item + idItem);
+            p.close();
+            this.popIsOpen = !this.popIsOpen;
+            this.chargeData();
+        });
     }
     openUpdate(item: string, p: any){
         if (!this.popIsOpen){
@@ -101,5 +100,13 @@ export class CardUserComponent {
         p.close();
         this.tables[index].data = this.itemUpdate;
         this.popIsOpen = !this.popIsOpen;
+    }
+
+    deletePublication(idItem: number, p: any){
+        this.database.deletePublication({id: idItem}).subscribe(val =>{
+            console.log(val);
+            this.chargeData();
+            p.close();
+        })
     }
 }

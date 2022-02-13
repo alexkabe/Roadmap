@@ -44,12 +44,22 @@ export class DataBase{
       return this.http.post(`${this.URL}addPublication`, point2);
     }
 
+    getDataOneUser(id: number){
+      let user = {
+        user: id
+      }
+      return this.http.post(`${this.URL}userPublication`, user);
+    }
     dropPont(){
 
     }
 
-    updatePoint(){
+    updatePublication(publication: any){
+      return this.http.put(`${this.URL}UpdatePublication`, publication);
+    }
 
+    deletePublication(id: any){
+      return this.http.put(`${this.URL}deletePublication`, id);
     }
 
 

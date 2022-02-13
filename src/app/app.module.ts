@@ -37,7 +37,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
-
     NgxSpinnerModule,
   ],
   providers: [

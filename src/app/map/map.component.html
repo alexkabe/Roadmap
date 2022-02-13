@@ -16,9 +16,9 @@
             <app-card-user></app-card-user>
           </ng-template>
           
-          <ng-template ngbSlide *ngFor="let user of users">
+          <ng-template ngbSlide *ngFor="let user of usersData">
             <div>{{ user.username }}</div>
-            <app-card [tables]="tables"></app-card>
+            <app-card [tables]="user.data"></app-card>
           </ng-template>
           
           

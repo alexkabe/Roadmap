@@ -35,13 +35,14 @@ export class LoginComponent implements OnInit {
   connexion(f:any){
     this.spinner.show();
     // this.database.user =  this.loginForm.value;
-    this.database.isLoggedIn(this.loginForm.value).subscribe(val =>{
-      if(val){
-        let val2 = {
-          etat: val
-        }
+    this.database.isLoggedIn(this.loginForm.value).subscribe((val: any) =>{
+      console.log(val.status)
+      if(val.status){
         localStorage.setItem('byu5wec467ubwbtec7n6wc7er6', "byu5wec4677er6")
+        this.database.user = val.user;
         this.router.navigate(['/team']);
+        console.log(val.user)
+        localStorage.setItem('userConnected', JSON.stringify(val.user))
         f.reset();
         this.spinner.hide();
       }else{

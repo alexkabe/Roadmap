@@ -17,43 +17,10 @@ export class MapComponent implements OnInit {
   // inputValue = "";
   titre ="Alex Kabe Kabe";
   tables2:any = [];
-  tables = [
-    {
-      data: 'Je suis la CAF 1',
-      date_publication: "12-02-2002",
-    },
-    {
-      data: 'Je suis la CAF 2',  
-      date_publication: "12-02-2002",
-    },
-    {
-      data: 'Je suis la CAF 3',
-      date_publication: "12-02-2002",
-    },
-    {
-      data: 'Je suis la CAF 4',
-      date_publication: "12-02-2002",
-    },
-    {
-      data: 'Je suis la CAF 5',
-      date_publication: "12-02-2002",
-    }
-  ];
-
-  users= [
-    {
-      username: 'Alex',
-      password: "kabe"
-    },
-    {
-      username: 'Alex',
-      password: "kabe"
-    },
-    {
-      username: 'Alex',
-      password: "kabe"
-    }
-  ]
+  tables = [];
+  userConnected:any = {};
+  usersData: any = [];
+  users: any= []
   // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
   constructor(private formBuilder: FormBuilder, private database: DataBase) { }
@@ -65,6 +32,23 @@ export class MapComponent implements OnInit {
       // console.log(data);
       this.tables2 = data;
     });
+
+    this.database.getUsers().subscribe((userList: any) =>{
+      this.users = userList;
+      this.userConnected = localStorage.getItem('userConnected');
+      this.userConnected = JSON.parse(this.userConnected) 
+      for (let user of this.users){
+        if(this.userConnected.id !== user.id){
+          this.database.getDataOneUser(user.id).subscribe(dataUser =>{
+            let userData ={
+              user: user.first_name + " " + user.last_name,
+              data:  dataUser
+            }
+            this.usersData.push(userData);
+          })
+        }
+      }
+    })
   }
 }
 // function ScrollToBottomDirective(ScrollToBottomDirective: any) {
