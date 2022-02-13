@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DataBase } from '../services/database';
 
@@ -11,14 +11,14 @@ export class CardComponent {
   titre ="Alex kabe kabe"
   inputValue= "";
 
-  tables: any = [];
+  @Input() tables: any
 
   constructor(private database: DataBase,private spinner: NgxSpinnerService) { 
-    this.spinner.show();
-    this.database.getPublications().subscribe((data: any) =>{
-        this.tables = data;
-        console.log(data);
-        this.spinner.hide();
-      });
+    // this.spinner.show();
+    // this.database.getPublications().subscribe((data: any) =>{
+    //     this.tables = data;
+    //     // console.log(data);
+    //     this.spinner.hide();
+    //   });
   }
 }

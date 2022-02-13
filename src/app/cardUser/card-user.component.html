@@ -34,18 +34,18 @@
                         <ng-template #popTitle> Modifier le  point en rouge </ng-template>
                     </div>
                     
-                    <div class="titreRouge">{{ item.data }}</div>
                     <div class="pointRouge"   
-                        [ngbPopover]="popContent"
+                    [ngbPopover]="popContent"
                         [autoClose]="false"
                         triggers="manual"
                         #p="ngbPopover"
                         placement="right"
                         (click)="openUpdate(item.data, p)"
                         [popoverTitle]="popTitle"
-                    >
-                        <div class="heureRouge">{{ item.date_publication }}</div>
-                        <div class="dateRouge">{{ item.date_publication }}</div>
+                        >
+                        <div class="titre">{{ item.data }}</div>
+                        <div class="heure">{{ item.date_publication }}</div>
+                        <div class="date">{{ item.date_publication }}</div>
                     </div>
                     <hr class="verticalAlign"  width="1" >
                 </div>

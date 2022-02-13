@@ -44,7 +44,7 @@ export class CardUserComponent {
         this.spinner.show();
         this.database.getPublications().subscribe((data: any) =>{
             this.tables = data;
-            console.log(data);
+            // console.log(data);
             this.spinner.hide();
           });
     }

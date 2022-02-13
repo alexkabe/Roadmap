@@ -3,14 +3,26 @@
     <!-- <img [src]="images[2]" alt="Random third slide"> -->
     <div class="scroll">
       <div class="bod" #scrollMe >
-          <div *ngFor="let item of tables; let i = index">
-                  <div class="point" >
-                      <div class="titre">{{ item.titre }}</div>
-                      <div class="heure">{{ item.heure }}</div>
-                      <div class="date">{{ item.date }}</div>
+        <div *ngFor="let item of tables; let i = index">
+            <div class="rouge" *ngIf="item.status === true">
+                  <div class="pointRouge" >
+                      <div class="titre">{{ item.data }}</div>
+                      <div class="heure">{{ item.date_publication }}</div>
+                      <div class="date">{{ item.date_publication }}</div>
                   </div>
-              <hr class="verticalAlign"  width="1" >
+                <hr class="verticalAlign"  width="1" >
             </div>
+
+            <div *ngIf="item.status === false">
+                <div class="point" >
+                    <div class="titre">{{ item.data }}</div>
+                    <div class="heure">{{ item.date_publication }}</div>
+                    <div class="date">{{ item.date_publication }}</div>
+                </div>
+              <hr class="verticalAlign"  width="1" >
+          </div>
+          
         </div>
+    </div>
     </div>
 </div>

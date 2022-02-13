@@ -16,31 +16,27 @@ export class MapComponent implements OnInit {
   // slideIndex = 1;
   // inputValue = "";
   titre ="Alex Kabe Kabe";
+  tables2:any = [];
   tables = [
     {
-      titre: 'Je suis la CAF 1',
-      date: "12-02-2002",
-      heure: "00:00:00"
+      data: 'Je suis la CAF 1',
+      date_publication: "12-02-2002",
     },
     {
-      titre: 'Je suis la CAF 2',  
-      date: "12-02-2002",
-      heure: "00:00:00"
+      data: 'Je suis la CAF 2',  
+      date_publication: "12-02-2002",
     },
     {
-      titre: 'Je suis la CAF 3',
-      date: "12-02-2002",
-      heure: "00:00:00"
+      data: 'Je suis la CAF 3',
+      date_publication: "12-02-2002",
     },
     {
-      titre: 'Je suis la CAF 4',
-      date: "12-02-2002",
-      heure: "00:00:00"
+      data: 'Je suis la CAF 4',
+      date_publication: "12-02-2002",
     },
     {
-      titre: 'Je suis la CAF 5',
-      date: "12-02-2002",
-      heure: "00:00:00"
+      data: 'Je suis la CAF 5',
+      date_publication: "12-02-2002",
     }
   ];
 
@@ -51,8 +47,9 @@ export class MapComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.database.getUsers().subscribe(data =>{
+    this.database.getPublications().subscribe(data =>{
       // console.log(data);
+      this.tables2 = data;
     });
   }
 }
