@@ -64,14 +64,15 @@
                     </div>
 
                     <div class="point"   
-                        [ngbPopover]="popContent"
-                        [autoClose]="false"
-                        triggers="manual"
-                        #pr="ngbPopover"
-                        placement="right"
-                        (click)="openUpdate(item.data, pr)"
-                        [popoverTitle]="popTitle"
+                    [ngbPopover]="popContent"
+                    [autoClose]="false"
+                    triggers="manual"
+                    #pr="ngbPopover"
+                    placement="right"
+                    (click)="openUpdate(item.data, pr)"
+                    [popoverTitle]="popTitle"
                     >
+                    🍔
                         <div class="titre">{{ item.data }}</div>
                         <div class="heure">{{ item.date_publication }}</div>
                         <div class="date">{{ item.date_publication }}</div>

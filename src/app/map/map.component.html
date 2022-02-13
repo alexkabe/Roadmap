@@ -16,16 +16,16 @@
             <app-card-user></app-card-user>
           </ng-template>
           
-          
-          <ng-template ngbSlide>
-              <app-card [tables]="tables"></app-card>
+          <ng-template ngbSlide *ngFor="let user of users">
+            <div>{{ user.username }}</div>
+            <app-card [tables]="tables"></app-card>
           </ng-template>
           
           
-          <ng-template ngbSlide>
+          <!-- <ng-template ngbSlide>
             <app-card [tables]="tables2"></app-card>
           </ng-template>
-      
+       -->
       
         </ngb-carousel>  
       </div>      

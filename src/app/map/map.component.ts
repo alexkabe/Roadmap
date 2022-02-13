@@ -40,6 +40,20 @@ export class MapComponent implements OnInit {
     }
   ];
 
+  users= [
+    {
+      username: 'Alex',
+      password: "kabe"
+    },
+    {
+      username: 'Alex',
+      password: "kabe"
+    },
+    {
+      username: 'Alex',
+      password: "kabe"
+    }
+  ]
   // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
   constructor(private formBuilder: FormBuilder, private database: DataBase) { }
