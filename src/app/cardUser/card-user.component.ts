@@ -76,12 +76,12 @@ export class CardUserComponent {
 
     updatePoint(item: string, idItem: number, p: any){
         let publication ={
-            id: idItem,
-            data: item,
-            user: this.userConnected.id
+            "id": idItem,
+            "data": item,
+            "user": this.userConnected.id
         }
+        console.log(publication);
         this.database.updatePublication(publication).subscribe(valeur=>{
-            console.log(valeur);
             console.log(item + idItem);
             p.close();
             this.popIsOpen = !this.popIsOpen;
@@ -103,8 +103,8 @@ export class CardUserComponent {
     }
 
     deletePublication(idItem: number, p: any){
+        console.log(idItem);
         this.database.deletePublication({id: idItem}).subscribe(val =>{
-            console.log(val);
             this.chargeData();
             p.close();
         })

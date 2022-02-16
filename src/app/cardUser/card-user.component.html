@@ -63,8 +63,8 @@
                         <button type="button" class="btn btn-outline-danger bout" (click)="cancelUpdate(pr, i)">
                             Annuler
                         </button>
-                        <button type="button" class="btn btn-outline-secondary bout2" (click)="deletePublication(i,pr)" >Supprimer</button>
-                        <button type="button" class="btn btn-outline-success bout2" (click)="updatePoint(item.data, i,pr)" >Valider</button>
+                        <button type="button" class="btn btn-outline-secondary bout2" (click)="deletePublication(item.id,pr)" >Supprimer</button>
+                        <button type="button" class="btn btn-outline-success bout2" (click)="updatePoint(item.data, item.id,pr)" >Valider</button>
                         </ng-template>
                         <ng-template #popTitle> Modifier le  point en vert v</ng-template>
                     </div>
